@@ -5,7 +5,6 @@ plugins {
 }
 
 group = 'io.github.freehij'
-
 version = '1.0.0-' + (System.getenv("GITHUB_RUN_NUMBER") ?: "dev")
 
 gradlePlugin {
@@ -29,11 +28,6 @@ publishing {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
             }
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
         }
     }
 }

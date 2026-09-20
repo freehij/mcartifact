@@ -1,0 +1,24 @@
+plugins {
+    id 'groovy-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'io.github.freehij'
+version = '1.0.0'
+
+publishing {
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/freehij/mcartifact")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}

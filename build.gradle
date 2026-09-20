@@ -1,10 +1,24 @@
 plugins {
     id 'groovy-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '2.2.1'
     id 'maven-publish'
 }
 
 group = 'io.github.freehij'
-version = '1.0.0'
+
+version = '1.0.0-' + (System.getenv("GITHUB_RUN_NUMBER") ?: "dev")
+
+gradlePlugin {
+    plugins {
+        mcartifact {
+            id = 'io.github.freehij.mcartifact'
+            displayName = 'Minecraft Artifacts Downloader'
+            description = 'Downloads Minecraft artifacts based on version and environment'
+            implementationClass = 'io.github.freehij.mcartifact.McArtifactPlugin'
+            tags = ['minecraft', 'artifact', 'download']
+        }
+    }
+}
 
 publishing {
     repositories {

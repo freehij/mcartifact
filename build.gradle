@@ -9,6 +9,7 @@ version = '1.0.0'
 publishing {
     repositories {
         maven {
+            name = "github packages"
             url = uri("https://maven.pkg.github.com/freehij/mcartifact")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
